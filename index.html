@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person ❤️</title>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #4a4e69;
+            --accent-blue: #90e0ef;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Animated gradient to match the pink and blue theme */
+            background: linear-gradient(-45deg, #ffc8dd, #ffafcc, #bde0fe, #a2d2ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            animation: slideUp 1s ease-out;
+            margin: 20px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .gif-box img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .letter-content {
+            background: rgba(189, 224, 254, 0.3);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: left;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--secondary);
+            max-height: 250px;
+            overflow-y: auto;
+            border-left: 5px solid var(--accent-blue);
+            margin-bottom: 1.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .signature {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #c9184a;
+            font-style: italic;
+        }
+
+        .magic-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, background 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+        }
+
+        .magic-btn:hover {
+            transform: scale(1.02);
+            background: #ff758f;
+        }
+
+        .floating-emoji {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            font-size: 2rem;
+            animation: floatAway 2.5s ease-out forwards;
+        }
+
+        @keyframes floatAway {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(1.5) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="gif-box">
+            <img src="30010.gif" alt="Cute Cat with Flowers">
+        </div>
+
+        <h1>To My Favorite Person...</h1>
+
+        <div class="letter-content">
+            Hey Beautiful,<br><br>
+            I wanted to create something special just to tell you how much I adore you. Every day with you is a reminder of how lucky I am. You make my world so much brighter just by being in it.<br><br>
+            Thank you for being my person, my best friend, and my whole heart. I love you soo muchhh!
+            
+            <div class="signature">Yours truly, Paras</div>
+        </div>
+
+        <button class="magic-btn" onclick="celebrate()">Click for a Surprise! ✨</button>
+    </div>
+
+    <script>
+        function celebrate() {
+            const items = ['❤️', '💖', '💐', '✨', '🌸', '💙'];
+            for (let i = 0; i < 30; i++) {
+                const el = document.createElement('div');
+                el.className = 'floating-emoji';
+                el.innerHTML = items[Math.floor(Math.random() * items.length)];
+                
+                const x = (Math.random() - 0.5) * window.innerWidth * 1.5;
+                const y = (Math.random() - 0.8) * window.innerHeight * 1.5;
+                
+                el.style.setProperty('--x', `${x}px`);
+                el.style.setProperty('--y', `${y}px`);
+                el.style.left = '50%';
+                el.style.top = '50%';
+                
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+        }
+    </script>
+</body>
+</html>
